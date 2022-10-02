@@ -1,0 +1,146 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+//    id 'com.google.devtools.ksp' version '1.7.0-1.0.6'
+    id 'kotlin-parcelize'
+}
+
+android {
+    namespace 'com.bagnolati.jettipi'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.bagnolati.jettipi"
+        minSdk 23
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("keystore")
+            storePassword "EnterSafePassword*"
+            keyAlias "MyReleaseKey"
+            keyPassword "EnterSafePassword*"
+        }
+    }
+
+    buildTypes {
+        release {
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"https://mybaseurl.fr/\""
+            signingConfig signingConfigs.release
+        }
+        debug {
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"https://mybaseurl.fr/\""
+        }
+        preprod {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"https://mybaseurl.fr/\""
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.2.0'
+    }
+
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+
+}
+
+dependencies {
+    // Core
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+    implementation 'androidx.activity:activity-compose:1.6.0'
+    implementation "androidx.compose.ui:ui:$compose_ui_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
+    implementation "androidx.compose.ui:ui-text-google-fonts:$compose_ui_version"
+    implementation "androidx.compose.material:material:$compose_ui_version"
+    implementation "androidx.compose.material:material-icons-extended:$compose_ui_version"
+
+    // Timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+
+    // Accompanist
+    /** https://google.github.io/accompanist */
+    def accompanist_version = '0.25.1'
+    // Accompanist.Pager
+    implementation "com.google.accompanist:accompanist-pager:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-pager-indicators:$accompanist_version"
+    // Accompanist.SystemUiController
+    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
+    // Accompanist.Inset-UI
+    implementation "com.google.accompanist:accompanist-insets-ui:$accompanist_version"
+
+    // Retrofit
+    /** https://square.github.io/retrofit/ */
+    def retrofit_version = '2.9.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    // OkHttp
+    /** https://square.github.io/okhttp/ */
+    def okhttp_version = '5.0.0-alpha.9'
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    // Lifecycle compose
+    /** https://developer.android.com/jetpack/androidx/releases/lifecycle */
+    def lifecycle_version = '2.5.1'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
+
+    // Hilt-Dagger
+    /** https://developer.android.com/training/dependency-injection/hilt-android */
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
+
+    // Coroutines
+    def coroutines_version = '1.6.4'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$coroutines_version"
+
+    // DataStore Preferences
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+
+    // Coil
+    implementation 'io.coil-kt:coil-compose:2.2.2'
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
+}
