@@ -3,7 +3,6 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
-//    id 'com.google.devtools.ksp' version '1.7.0-1.0.6'
     id 'kotlin-parcelize'
 }
 
@@ -35,30 +34,26 @@ android {
 
     buildTypes {
         release {
+            buildConfigField "String", "BASE_URL", "\"$url_release\""
             shrinkResources true
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL", "\"https://mybaseurl.fr/\""
             signingConfig signingConfigs.release
         }
         debug {
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL", "\"https://mybaseurl.fr/\""
-        }
-        preprod {
+            buildConfigField "String", "BASE_URL", "\"$url_debug\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL", "\"https://mybaseurl.fr/\""
         }
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     buildFeatures {
@@ -78,6 +73,7 @@ android {
 }
 
 dependencies {
+
     // Core
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
@@ -88,10 +84,14 @@ dependencies {
     implementation "androidx.compose.material:material:$compose_ui_version"
     implementation "androidx.compose.material:material-icons-extended:$compose_ui_version"
 
+    // Navigation
+    def nav_version = "2.5.2"
+    implementation "androidx.navigation:navigation-compose:$nav_version"
+
     // Timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
 
-    // Accompanist
+    // Accompanist ->
     /** https://google.github.io/accompanist */
     def accompanist_version = '0.25.1'
     // Accompanist.Pager
@@ -143,4 +143,5 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
+
 }

@@ -1,11 +1,18 @@
 buildscript {
+
     ext {
         compose_ui_version = '1.2.1'
         hilt_version = '2.44'
+
+        url_debug = "https://mybaseurl.fr/"
+        url_release = "https://dev-baseurl.fr/"
     }
+
     dependencies {
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+
     }
+
 }
 
 plugins {

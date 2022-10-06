@@ -1,4 +1,4 @@
-package com.bagnolati.jettipi.ui.theme
+package com.bagnolati.jettipi.presentation.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Immutable
