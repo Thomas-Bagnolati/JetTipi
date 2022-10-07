@@ -2,7 +2,7 @@ package com.bagnolati.jettipi.di
 
 
 import com.bagnolati.jettipi.BuildConfig
-import com.bagnolati.jettipi.data.remote.api.UserApi
+import com.bagnolati.jettipi.data.remote.api.CountryApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,23 +13,22 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
-    level =
-        if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
-        else HttpLoggingInterceptor.Level.NONE // PROD
-}
 
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
+    private val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
+        level =
+            if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
+            else HttpLoggingInterceptor.Level.NONE
+    }
+
     @Provides
     @Singleton
     fun provideHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(
-                HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
-            )
+            .addInterceptor(httpLoggingInterceptor)
             .build()
     }
 
@@ -46,7 +45,8 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideUserApi(retrofit: Retrofit): UserApi =
-        retrofit.create(UserApi::class.java)
+    fun provideCountryApi(retrofit: Retrofit): CountryApi =
+        retrofit.create(CountryApi::class.java)
+
 
 }

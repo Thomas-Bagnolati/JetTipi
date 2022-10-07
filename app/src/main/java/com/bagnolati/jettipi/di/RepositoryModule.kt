@@ -1,7 +1,7 @@
 package com.bagnolati.jettipi.di
 
-import com.bagnolati.jettipi.data.repository.UserRepositoryImpl
-import com.bagnolati.jettipi.domain.repository.UserRepository
+import com.bagnolati.jettipi.data.repository.CountryRepositoryImpl
+import com.bagnolati.jettipi.domain.repository.CountryRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,8 +14,8 @@ abstract class RepositoryModule {
 
     @Binds
     @Singleton
-    abstract fun bindUserRepository(
-        userRepositoryImpl: UserRepositoryImpl,
-    ): UserRepository
+    abstract fun bindCountryRepository(
+        userRepositoryImpl: CountryRepositoryImpl,
+    ): CountryRepository
 
 }

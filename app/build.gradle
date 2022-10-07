@@ -83,6 +83,8 @@ dependencies {
     implementation "androidx.compose.ui:ui-text-google-fonts:$compose_ui_version"
     implementation "androidx.compose.material:material:$compose_ui_version"
     implementation "androidx.compose.material:material-icons-extended:$compose_ui_version"
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.4.0'
 
     // Navigation
     def nav_version = "2.5.2"
@@ -94,12 +96,9 @@ dependencies {
     // Accompanist ->
     /** https://google.github.io/accompanist */
     def accompanist_version = '0.25.1'
-    // Accompanist.Pager
-    implementation "com.google.accompanist:accompanist-pager:$accompanist_version"
-    implementation "com.google.accompanist:accompanist-pager-indicators:$accompanist_version"
-    // Accompanist.SystemUiController
+    // .System-Ui-Controller
     implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
-    // Accompanist.Inset-UI
+    // .Inset-UI
     implementation "com.google.accompanist:accompanist-insets-ui:$accompanist_version"
 
     // Retrofit
