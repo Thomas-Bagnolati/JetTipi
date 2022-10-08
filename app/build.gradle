@@ -84,7 +84,7 @@ dependencies {
     implementation "androidx.compose.material:material:$compose_ui_version"
     implementation "androidx.compose.material:material-icons-extended:$compose_ui_version"
     implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'com.google.android.material:material:1.6.1'
 
     // Navigation
     def nav_version = "2.5.2"
@@ -135,6 +135,7 @@ dependencies {
 
     // Coil
     implementation 'io.coil-kt:coil-compose:2.2.2'
+    implementation("io.coil-kt:coil-svg:2.2.2")
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

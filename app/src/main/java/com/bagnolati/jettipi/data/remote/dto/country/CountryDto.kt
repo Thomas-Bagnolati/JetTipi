@@ -1,7 +1,6 @@
 package com.bagnolati.jettipi.data.remote.dto.country
 
 
-import androidx.core.view.ContentInfoCompat
 import com.google.gson.annotations.SerializedName
 
 data class CountryDto(
@@ -40,17 +39,17 @@ data class CountryDto(
     @SerializedName("numericCode")
     val numericCode: String,
     @SerializedName("flags")
-    val flags: ContentInfoCompat.Flags,
-    // @SerializedName("currencies")
-    // val currencies: List<Currency>?,
+    val flags: Flags,
+    @SerializedName("currencies")
+    val currencies: List<Currency>?,
     @SerializedName("languages")
-    val languages: List<LanguageDto>,
-    // @SerializedName("translations")
-    // val translations: Translations,
+    val languagesDto: List<LanguageDto>,
+    @SerializedName("translations")
+    val translations: Translations,
     @SerializedName("flag")
     val flag: String,
-    // @SerializedName("regionalBlocs")
-    // val regionalBlocs: List<RegionalBloc>?,
+    @SerializedName("regionalBlocs")
+    val regionalBlocs: List<RegionalBloc>?,
     @SerializedName("cioc")
     val cioc: String?,
     @SerializedName("independent")

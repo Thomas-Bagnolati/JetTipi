@@ -7,8 +7,11 @@ fun CountryDto.toCountry(): Country {
     return Country(
         name = name,
         region = region,
-        languages = languages.toLanguages(),
-        population = population
+        languages = languagesDto.toLanguages(),
+        population = population,
+        flag = flag,
+        independent = independent,
+        capitale = capital
     )
 }
 

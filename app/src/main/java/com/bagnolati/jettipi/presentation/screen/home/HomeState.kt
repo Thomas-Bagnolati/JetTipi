@@ -7,5 +7,8 @@ data class HomeState(
     val isLoading: Boolean = false,
     val error: String? = null,
     val dialogIsVisible: Boolean = false,
-    val countries: List<Country>? = null
+
+    val countries: List<Country>? = null,
+    val country: Country? = null
+
 )

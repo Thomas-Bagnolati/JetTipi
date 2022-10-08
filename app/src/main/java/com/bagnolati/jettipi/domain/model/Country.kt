@@ -5,6 +5,9 @@ data class Country(
     val region: String,
     val population: Int?,
     val languages: List<Language>,
+    val capitale: String?,
+    val independent: Boolean,
+    val flag: String
 ) {
     data class Language(
         val name: String,

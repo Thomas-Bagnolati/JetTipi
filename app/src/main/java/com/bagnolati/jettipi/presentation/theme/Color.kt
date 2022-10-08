@@ -5,7 +5,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
 
-val Black = Color(0xFF000000)
+val Black = Color(0xFF151816)
 val White = Color(0xFFFFFFFF)
 val Transparent = Color(0x00000000)
 
@@ -23,8 +23,8 @@ val Gray800 = Color(0xFF292929)
 val Gray900 = Color(0xFF212121)
 val Gray950 = Color(0xFF141414)
 
-val Blue = Color(0xFF252941)
-val BlueDark = Color(0xFF05060B)
+val Blue = Color(0xFF6200EE)
+val BlueDark = Color(0xFF3700B3)
 val Red = Color(0xFFD13438)
 val RedDark = Color(0xFF982626)
 
@@ -48,7 +48,8 @@ data class AppColors(
     val onBackground: Color,
     val isLight: Boolean,
     val navigationBackIcon: Color,
-    val divider: Color
+    val divider: Color,
+    val inactive: Color = Gray500
 )
 
 val LightColors = AppColors(

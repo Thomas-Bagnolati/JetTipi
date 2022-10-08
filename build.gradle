@@ -5,12 +5,11 @@ buildscript {
         hilt_version = '2.44'
 
         url_debug = "https://restcountries.com/"
-        url_release = "https://restcountries.com/v3.1/"
+        url_release = "https://restcountries.com/"
     }
 
     dependencies {
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
-
     }
 
 }

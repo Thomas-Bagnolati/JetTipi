@@ -8,7 +8,10 @@ import androidx.lifecycle.viewModelScope
 import com.bagnolati.jettipi.common.ErrorConstants.ERROR_MESSAGE_DEFAULT
 import com.bagnolati.jettipi.common.Resource.*
 import com.bagnolati.jettipi.domain.use_case.user.GetAllCountriesUseCase
+import com.bagnolati.jettipi.presentation.screen.home.HomeEvent.OnRefreshRandomCountry
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
@@ -22,18 +25,32 @@ class HomeViewModel @Inject constructor(
     var state by mutableStateOf(HomeState())
         private set
 
+    private val _countries = MutableStateFlow<HomeState>(HomeState())
+    val countries: StateFlow<HomeState> = _countries
+
     init {
-        getAllCountries()
+        fetchAllCountries()
     }
 
-    private fun getAllCountries() {
+    fun onEvent(event: HomeEvent) {
+        when (event) {
+            OnRefreshRandomCountry -> TODO()
+        }
+    }
+
+    private fun fetchAllCountries() {
         getAllCountriesUseCase().onEach { result ->
             state = when (result) {
-                is Success -> state.copy(countries = result.data)
-                is Error -> state.copy(error = result.message ?: ERROR_MESSAGE_DEFAULT)
-                is Loading -> state.copy(isLoading = true)
+                is Success -> HomeState(countries = result.data)
+                is Error -> HomeState(error = result.message ?: ERROR_MESSAGE_DEFAULT)
+                is Loading -> HomeState(isLoading = true)
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun refreshRandomCountry() {
+        val randomCountry = state.countries?.random()
+        state = state.copy(country = randomCountry)
     }
 
 }
