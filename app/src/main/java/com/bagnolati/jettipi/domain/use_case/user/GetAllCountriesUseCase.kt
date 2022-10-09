@@ -3,7 +3,7 @@ package com.bagnolati.jettipi.domain.use_case.user
 import com.bagnolati.jettipi.common.ErrorConstants.ERROR_MESSAGE_DEFAULT
 import com.bagnolati.jettipi.common.ErrorConstants.ERROR_MESSAGE_NETWORK
 import com.bagnolati.jettipi.common.Resource
-import com.bagnolati.jettipi.data.remote.dto.country.toCountries
+import com.bagnolati.jettipi.data.remote.dto.toCountries
 import com.bagnolati.jettipi.domain.model.Country
 import com.bagnolati.jettipi.domain.repository.CountryRepository
 import kotlinx.coroutines.flow.Flow
