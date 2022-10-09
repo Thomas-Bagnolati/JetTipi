@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.sp
 data class AppTypography(
     val h1: TextStyle = TextStyle(
         fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.SemiBold,
         fontSize = 24.sp,
     ),
     val subtitle: TextStyle = TextStyle(

@@ -7,25 +7,15 @@ fun CountryDto.toCountry(): Country {
     return Country(
         name = name,
         region = region,
-        languages = languagesDto.toLanguages(),
+        languageName = languagesDto.first().name,
+        nativeLanguageName = languagesDto.first().nativeName,
         population = population,
         flag = flag,
         independent = independent,
-        capitale = capital
+        capital = capital
     )
 }
 
 fun List<CountryDto>.toCountries(): List<Country> {
     return map { it.toCountry() }
-}
-
-fun LanguageDto.toLanguage(): Country.Language {
-    return Country.Language(
-        name = name,
-        nativeName = nativeName
-    )
-}
-
-fun List<LanguageDto>.toLanguages(): List<Country.Language> {
-    return map { it.toLanguage() }
 }

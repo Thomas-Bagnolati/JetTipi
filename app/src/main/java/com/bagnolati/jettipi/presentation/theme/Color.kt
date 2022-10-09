@@ -29,7 +29,7 @@ val Red = Color(0xFFD13438)
 val RedDark = Color(0xFF982626)
 
 val CardDark = Color(0xFF3B3E43)
-val CardLight = White
+val CardLight = Color(0xFFC3CEDF)
 
 val BackgroundLight = Color(0xFFF5F2F5)
 val BackgroundDark = Color(0xFF24292E)
@@ -49,8 +49,10 @@ data class AppColors(
     val isLight: Boolean,
     val navigationBackIcon: Color,
     val divider: Color,
-    val inactive: Color = Gray500
-)
+    val inactive: Color = Gray500,
+    val cardBackground: Color
+) {
+}
 
 val LightColors = AppColors(
     primary = Blue,
@@ -61,7 +63,8 @@ val LightColors = AppColors(
     onBackground = Black,
     isLight = true,
     navigationBackIcon = Gray900,
-    divider = DividerDark
+    divider = DividerDark,
+    cardBackground = CardLight
 )
 
 val DarkColors = AppColors(
@@ -73,7 +76,8 @@ val DarkColors = AppColors(
     onBackground = White,
     isLight = false,
     navigationBackIcon = Gray100,
-    divider = DividerLight
+    divider = DividerLight,
+    cardBackground = CardDark
 )
 
 

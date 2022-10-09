@@ -41,7 +41,7 @@ class HomeViewModel @Inject constructor(
     private fun fetchAllCountries() {
         getAllCountriesUseCase().onEach { result ->
             state = when (result) {
-                is Success -> HomeState(countries = result.data)
+                is Success -> HomeState(countries = result.data, country = result.data?.random())
                 is Error -> HomeState(error = result.message ?: ERROR_MESSAGE_DEFAULT)
                 is Loading -> HomeState(isLoading = true)
             }

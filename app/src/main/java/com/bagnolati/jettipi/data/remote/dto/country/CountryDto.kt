@@ -39,17 +39,17 @@ data class CountryDto(
     @SerializedName("numericCode")
     val numericCode: String,
     @SerializedName("flags")
-    val flags: Flags,
+    val flagsDto: FlagsDto,
     @SerializedName("currencies")
-    val currencies: List<Currency>?,
+    val currencies: List<CurrencyDto>?,
     @SerializedName("languages")
     val languagesDto: List<LanguageDto>,
     @SerializedName("translations")
-    val translations: Translations,
+    val translationsDto: TranslationsDto,
     @SerializedName("flag")
     val flag: String,
     @SerializedName("regionalBlocs")
-    val regionalBlocs: List<RegionalBloc>?,
+    val regionalBlocDtos: List<RegionalBlocDto>?,
     @SerializedName("cioc")
     val cioc: String?,
     @SerializedName("independent")
