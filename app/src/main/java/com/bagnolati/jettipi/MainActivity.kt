@@ -4,11 +4,15 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
-import com.bagnolati.jettipi.ui.theme.AppTheme
-import com.bagnolati.jettipi.ui.theme.ConfigUI
+import com.bagnolati.jettipi.presentation.screen.ConfigNavigation
+import com.bagnolati.jettipi.presentation.theme.AppTheme
+import com.bagnolati.jettipi.presentation.theme.ConfigUI
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,17 +20,15 @@ class MainActivity : ComponentActivity() {
         setContent {
             AppTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .navigationBarsPadding(),
                     color = AppTheme.colors.background
                 ) {
-
-                    // DestinationsNavHost(navGraph = NavGraphs.main, engine = rememberAnimatedNavHostEngine())
                     ConfigUI(window, this)
-
-
+                    ConfigNavigation()
                 }
             }
-
         }
     }
 }

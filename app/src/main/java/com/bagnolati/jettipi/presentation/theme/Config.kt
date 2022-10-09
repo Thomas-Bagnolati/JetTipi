@@ -1,4 +1,4 @@
-package com.bagnolati.jettipi.ui.theme
+package com.bagnolati.jettipi.presentation.theme
 
 import android.app.Activity
 import android.view.Window

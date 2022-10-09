@@ -1,4 +1,4 @@
-package com.bagnolati.jettipi.ui.theme
+package com.bagnolati.jettipi.presentation.theme
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.compositionLocalOf
@@ -11,7 +11,7 @@ data class AppDuration(
     val long: Int = 1200,
     val extraLong: Int = 3000,
 
-    val animatedView: Int = 300
+    val animatedView: Int = 3000
 )
 
 val LocalDuration = compositionLocalOf { AppDuration() }
