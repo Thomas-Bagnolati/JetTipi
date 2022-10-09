@@ -1,5 +1,6 @@
-package com.bagnolati.jettipi.data.remote.dto.country
+package com.bagnolati.jettipi.data.remote.dto
 
+import com.bagnolati.jettipi.data.remote.dto.country.CountryDto
 import com.bagnolati.jettipi.domain.model.Country
 
 
