@@ -5,9 +5,27 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
 
-val Black = Color(0xFF151816)
-val White = Color(0xFFFFFFFF)
+val Dark = Color(0xFF151816)
+val Light = Color(0xFFFFFFFF)
 val Transparent = Color(0x00000000)
+
+val Blue = Color(0xFF467CDA)
+val Purple = Color(0xFF6200EE)
+val PurpleDark = Color(0xFF694D9B)
+val BlueGreen = Color(0xFF75C2B3)
+val BlueGreenDark = Color(0xFF32695F)
+
+val CardDark = Color(0xFF3B3E43)
+val CardLight = Color(0xFFC3CEDF)
+
+val OnBackGroundLight = Dark
+val OnBackGroundDark = Light
+
+val BackgroundLight = Color(0xFFF5F2F5)
+val BackgroundDark = Color(0xFF24292E)
+
+val DividerLight = Color(0xFFEBEBEB)
+val DividerDark = Color(0xFF6E6E6E)
 
 val Gray25 = Color(0xFFF8F8F8)
 val Gray50 = Color(0xFFF1F1F1)
@@ -23,62 +41,37 @@ val Gray800 = Color(0xFF292929)
 val Gray900 = Color(0xFF212121)
 val Gray950 = Color(0xFF141414)
 
-val Blue = Color(0xFF6200EE)
-val BlueDark = Color(0xFF3700B3)
-val Red = Color(0xFFD13438)
-val RedDark = Color(0xFF982626)
-
-val CardDark = Color(0xFF3B3E43)
-val CardLight = Color(0xFFC3CEDF)
-
-val BackgroundLight = Color(0xFFF5F2F5)
-val BackgroundDark = Color(0xFF24292E)
-
-val DividerLight = Color(0xFFE0E0E0)
-val DividerDark = Color(0xFF6E6E6E)
-
 
 @Immutable
 data class AppColors(
-    val primary: Color,
-    val secondary: Color,
+    val primary: Color = Purple,
+    val onPrimary: Color = Light,
+    val secondary: Color = BlueGreen,
+    val onSecondary: Color = Dark,
     val background: Color,
-    val textPrimary: Color,
-    val onPrimary: Color,
     val onBackground: Color,
     val isLight: Boolean,
     val navigationBackIcon: Color,
     val divider: Color,
     val inactive: Color = Gray500,
-    val cardBackground: Color
-) {
-}
+    val cardLightBackground: Color = CardLight,
+    val cardDarkBackground: Color = CardDark
+)
 
 val LightColors = AppColors(
-    primary = Blue,
-    secondary = Red,
     background = BackgroundLight,
-    textPrimary = Black,
-    onPrimary = White,
-    onBackground = Black,
-    isLight = true,
+    onBackground = OnBackGroundLight,
     navigationBackIcon = Gray900,
     divider = DividerDark,
-    cardBackground = CardLight
+    isLight = true,
 )
 
 val DarkColors = AppColors(
-    primary = Blue,
-    secondary = Red,
     background = BackgroundDark,
-    textPrimary = White,
-    onPrimary = White,
-    onBackground = White,
-    isLight = false,
+    onBackground = OnBackGroundDark,
     navigationBackIcon = Gray100,
     divider = DividerLight,
-    cardBackground = CardDark
+    isLight = false,
 )
-
 
 internal val LocalColors = staticCompositionLocalOf { LightColors }

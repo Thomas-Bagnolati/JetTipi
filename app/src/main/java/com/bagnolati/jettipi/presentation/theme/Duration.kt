@@ -11,7 +11,7 @@ data class AppDuration(
     val long: Int = 1200,
     val extraLong: Int = 3000,
 
-    val animatedView: Int = 300
+    val animatedView: Int = 3000
 )
 
 val LocalDuration = compositionLocalOf { AppDuration() }

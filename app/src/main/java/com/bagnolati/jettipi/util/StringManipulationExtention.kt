@@ -16,3 +16,7 @@ fun String.uppercaseOnEachWord(): String {
 fun String.capitalize(): String {
     return this.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
 }
+
+fun String.toNumberFormat(): String {
+    return this.reversed().chunked(3).joinToString(separator = " ").reversed()
+}

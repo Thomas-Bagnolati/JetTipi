@@ -37,7 +37,6 @@ object AppTheme {
 @Composable
 fun AppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    typography: AppTypography = AppTheme.typography,
     spacing: AppSpacing = AppTheme.spacing,
     shapes: AppShapes = AppTheme.shapes,
     letterSpacing: AppLetterSpacing = AppTheme.letterSpacing,
@@ -46,16 +45,16 @@ fun AppTheme(
 ) {
 
     val colors = if (darkTheme) DarkColors else LightColors
+    val typo = if (darkTheme) DarkTypography else LightTypography
     val rememberedColors = remember { colors.copy() }
 
     CompositionLocalProvider(
         LocalColors provides rememberedColors,
-        LocalTypography provides typography,
+        LocalTypography provides typo,
         LocalSpacing provides spacing,
         LocalShape provides shapes,
         LocalLetterSpacing provides letterSpacing,
         LocalDuration provides duration,
         content = content
     )
-
 }

@@ -13,22 +13,16 @@ import com.bagnolati.jettipi.util.notClickable
 
 @Composable
 fun LoadingView(clickable: Boolean = false) {
-    val modifier =
-        if (clickable) Modifier
-            .fillMaxSize()
-            .background(color = AppTheme.colors.inactive.copy(alpha = 0.6f))
-            .notClickable()
-        else Modifier
-            .fillMaxSize()
-            .background(color = AppTheme.colors.inactive.copy(alpha = 0.6f))
+    val modifier = Modifier
+        .fillMaxSize()
+        .background(color = AppTheme.colors.inactive.copy(alpha = 0.7f))
 
     Box(
-        modifier = modifier,
+        modifier = if (clickable) modifier else modifier.notClickable(),
         contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator(
             color = AppTheme.colors.primary,
         )
-
     }
 }
