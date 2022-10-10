@@ -41,6 +41,7 @@ fun SplashScreen(
             Text(
                 text = stringResource(id = R.string.app_name),
                 style = AppTheme.typography.h1,
+                color = AppTheme.colors.textTheme,
                 textAlign = TextAlign.Center
             )
             Text(

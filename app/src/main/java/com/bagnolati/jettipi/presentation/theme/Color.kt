@@ -5,24 +5,27 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
 
-val Dark = Color(0xFF151816)
-val Light = Color(0xFFFFFFFF)
+val Black = Color(0xFF141414)
+val White = Color(0xFFF3F3F3)
+val Dark = Color(0xFF1D2345)
+val Light = Color(0xFFF3F1F0)
 val Transparent = Color(0x00000000)
 
-val Blue = Color(0xFF467CDA)
-val Purple = Color(0xFF6200EE)
-val PurpleDark = Color(0xFF694D9B)
-val BlueGreen = Color(0xFF75C2B3)
-val BlueGreenDark = Color(0xFF32695F)
+val BlueRoyal = Color(0xFF3759D8)
+val GoldRoyal = Color(0xFFD5BB84)
+val Pink = Color(0xFFCC3F7B)
 
 val CardDark = Color(0xFF3B3E43)
 val CardLight = Color(0xFFC3CEDF)
 
-val OnBackGroundLight = Dark
-val OnBackGroundDark = Light
+val OnBackGroundLight = Black
+val OnBackGroundDark = White
 
-val BackgroundLight = Color(0xFFF5F2F5)
-val BackgroundDark = Color(0xFF24292E)
+val TextDark = Dark
+val TextLight = Light
+
+val BackgroundLight = Light
+val BackgroundDark = Dark
 
 val DividerLight = Color(0xFFEBEBEB)
 val DividerDark = Color(0xFF6E6E6E)
@@ -44,12 +47,16 @@ val Gray950 = Color(0xFF141414)
 
 @Immutable
 data class AppColors(
-    val primary: Color = Purple,
+    val dark: Color = Dark,
+    val light: Color = Light,
+    val primary: Color = BlueRoyal,
     val onPrimary: Color = Light,
-    val secondary: Color = BlueGreen,
+    val secondary: Color = GoldRoyal,
     val onSecondary: Color = Dark,
+    val accent: Color = Pink,
     val background: Color,
     val onBackground: Color,
+    val textTheme: Color,
     val isLight: Boolean,
     val navigationBackIcon: Color,
     val divider: Color,
@@ -61,6 +68,7 @@ data class AppColors(
 val LightColors = AppColors(
     background = BackgroundLight,
     onBackground = OnBackGroundLight,
+    textTheme = TextDark,
     navigationBackIcon = Gray900,
     divider = DividerDark,
     isLight = true,
@@ -69,6 +77,7 @@ val LightColors = AppColors(
 val DarkColors = AppColors(
     background = BackgroundDark,
     onBackground = OnBackGroundDark,
+    textTheme = TextLight,
     navigationBackIcon = Gray100,
     divider = DividerLight,
     isLight = false,

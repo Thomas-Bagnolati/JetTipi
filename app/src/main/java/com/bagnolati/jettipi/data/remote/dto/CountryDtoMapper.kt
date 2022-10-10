@@ -8,12 +8,17 @@ fun CountryDto.toCountry(): Country {
     return Country(
         name = name,
         region = region,
-        languageName = languagesDto.first().name,
+        subRegion = subregion,
+        languageNames = languagesDto.map { it.name },
         nativeLanguageName = languagesDto.first().nativeName,
         population = population,
-        flag = flag,
+        flagUrl = flag,
         independent = independent,
-        capital = capital
+        capital = capital,
+        alpha2Code = alpha2Code,
+        demonym = demonym,
+        timezones = timezones.first(),
+        topLevelDomain = topLevelDomain.first()
     )
 }
 

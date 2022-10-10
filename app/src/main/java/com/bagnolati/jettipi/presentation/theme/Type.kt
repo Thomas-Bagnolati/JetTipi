@@ -17,7 +17,7 @@ data class AppTypography(
     ),
     val h4: TextStyle = TextStyle(
         fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.SemiBold,
+        fontWeight = FontWeight.Medium,
         fontSize = 12.sp,
     ),
     val subtitle: TextStyle = TextStyle(

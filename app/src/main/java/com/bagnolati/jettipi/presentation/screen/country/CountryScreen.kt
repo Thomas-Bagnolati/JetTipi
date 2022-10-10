@@ -4,12 +4,14 @@ import android.content.res.Configuration
 import androidx.compose.animation.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.BottomCenter
 import androidx.compose.ui.Alignment.Companion.TopCenter
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
@@ -47,40 +49,35 @@ private fun CountryView(
     state: CountryState,
     onClickRefresh: () -> Unit,
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = AppTheme.colors.background)
-            .padding(bottom = AppTheme.spacing.verticalLarge),
-    ) {
+    AnimatedContent(
+        targetState = state.country,
+        transitionSpec = { (fadeIn() with fadeOut()).using(SizeTransform(clip = false)) }
+    ) { animatedCountry ->
+        animatedCountry?.let {
 
-        AnimatedContent(
-            targetState = state.country,
-            transitionSpec = { fadeIn() with fadeOut() }
-        ) { animatedCountry ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(color = AppTheme.colors.background)
+                    .padding(bottom = AppTheme.spacing.verticalLarge),
+            ) {
 
-            animatedCountry?.let {
-                Column {
-                    CountryImageFlag(flagUrl = it.flag)
-                    CountryInfos(country = it)
-                }
+                CountryImageCard(country = it)
+                CountryInfos(modifier = Modifier.weight(1f), country = it)
+                ButtonLarge(
+                    text = "Refresh",
+                    onClick = onClickRefresh
+                )
             }
-
         }
-
-        ButtonLarge(
-            modifier = Modifier.align(BottomCenter),
-            text = "Refresh",
-            onClick = onClickRefresh
-        )
 
     }
     when {
         state.isLoading -> LoadingView()
         state.error != null -> {}
     }
-
 }
+
 
 @Composable
 private fun CountryInfos(
@@ -90,17 +87,25 @@ private fun CountryInfos(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = AppTheme.spacing.verticalDefault, horizontal = AppTheme.spacing.horizontalDefault),
+            .verticalScroll(state = rememberScrollState())
+            .padding(
+                vertical = AppTheme.spacing.verticalLarge,
+                horizontal = AppTheme.spacing.horizontalLarge
+            ),
     ) {
-        Spacer(modifier = Modifier.height(AppTheme.spacing.L))
-        Text(text = country.name, style = AppTheme.typography.h1, textAlign = TextAlign.Center, maxLines = 1, modifier = Modifier.fillMaxWidth())
-        Spacer(modifier = Modifier.height(AppTheme.spacing.L))
         KeyValueText(key = "Region", value = country.region)
+        KeyValueText(key = "Sub region", value = country.subRegion)
         KeyValueText(key = "Capitale ", value = country.capital ?: "unknown")
         KeyValueText(key = "Independent", value = country.independent.toString())
-        KeyValueText(key = "Language", value = country.languageName)
+        country.languageNames.forEach {
+            KeyValueText(key = "Language", value = it)
+        }
         KeyValueText(key = "Native language", value = country.nativeLanguageName ?: "unknown")
         KeyValueText(key = "Population", value = country.population.toString().toNumberFormat())
+        KeyValueText(key = "alpha 2 code", value = country.alpha2Code)
+        KeyValueText(key = "Demonym", value = country.demonym)
+        KeyValueText(key = "Time zones", value = country.timezones)
+        KeyValueText(key = "Top level domain", value = country.topLevelDomain)
     }
 }
 
@@ -117,6 +122,7 @@ private fun KeyValueText(
         contentAlignment = Alignment.BottomStart
     ) {
         Text(
+            modifier = Modifier.alpha(0.3f),
             text = key,
             style = AppTheme.typography.h4
         )
@@ -132,22 +138,38 @@ private fun KeyValueText(
 }
 
 @Composable
-private fun CountryImageFlag(
+private fun CountryImageCard(
     modifier: Modifier = Modifier,
-    flagUrl: String?
+    country: Country
 ) {
-    AsyncImage(
-        modifier = modifier
-            .height(300.dp)
-            .fillMaxWidth()
-            .background(AppTheme.colors.cardDarkBackground),
-        model = ImageRequest.Builder(LocalContext.current)
-            .data(flagUrl)
-            .decoderFactory(SvgDecoder.Factory())
-            .build(),
-        contentDescription = null,
-        contentScale = ContentScale.Crop,
-    )
+    Column {
+        AsyncImage(
+            modifier = modifier
+                .height(300.dp)
+                .fillMaxWidth()
+                .background(AppTheme.colors.cardDarkBackground),
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(country.flagUrl)
+                .decoderFactory(SvgDecoder.Factory())
+                .build(),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+        )
+
+        Text(
+            text = country.name,
+            style = AppTheme.typography.h1,
+            textAlign = TextAlign.End,
+            maxLines = 1,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    vertical = AppTheme.spacing.verticalDefault,
+                    horizontal = AppTheme.spacing.horizontalDefault
+                ),
+            color = AppTheme.colors.textTheme
+        )
+    }
 }
 
 
@@ -159,11 +181,16 @@ private fun CountryPreview() {
         name = "France",
         region = "Europe",
         population = 67_032_000,
-        languageName = "French",
+        languageNames = listOf("French"),
         nativeLanguageName = "Français",
         capital = "Paris",
         independent = true,
-        flag = "link"
+        flagUrl = "link",
+        topLevelDomain = ".fr",
+        timezones = "+2xx",
+        demonym = "French",
+        alpha2Code = "FR",
+        subRegion = ""
     )
     val mokCountries = listOf(mokCountry)
     val state = CountryState(

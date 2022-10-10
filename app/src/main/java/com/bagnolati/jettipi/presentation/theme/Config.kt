@@ -16,6 +16,7 @@ fun ConfigUI(window: Window, activity: Activity) {
     WindowCompat.setDecorFitsSystemWindows(window, false)
     rememberSystemUiController().apply {
         setSystemBarsColor(Color.Transparent)
+        setNavigationBarColor(Color.Black)
     }
 
     ViewCompat.setOnApplyWindowInsetsListener(activity.findViewById(android.R.id.content)) { view, insets ->

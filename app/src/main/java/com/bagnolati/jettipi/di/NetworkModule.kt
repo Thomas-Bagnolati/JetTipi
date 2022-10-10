@@ -20,7 +20,7 @@ object NetworkModule {
 
     private val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
         level =
-            if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
+            if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BASIC
             else HttpLoggingInterceptor.Level.NONE
     }
 
