@@ -15,11 +15,3 @@ fun Modifier.notClickable(): Modifier = composed {
         onClick = { },
     )
 }
-
-
-fun Modifier.visibleWhen(
-    visibleIf: () -> Boolean
-): Modifier {
-    val alphaVisibility = if (visibleIf.invoke()) 1f else 0f
-    return alpha(alphaVisibility)
-}

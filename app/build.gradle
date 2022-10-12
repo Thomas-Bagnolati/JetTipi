@@ -90,9 +90,6 @@ dependencies {
     def nav_version = "2.5.2"
     implementation "androidx.navigation:navigation-compose:$nav_version"
 
-    // Timber
-    implementation 'com.jakewharton.timber:timber:5.0.1'
-
     // Accompanist ->
     /** https://google.github.io/accompanist */
     def accompanist_version = '0.25.1'
@@ -129,6 +126,14 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$coroutines_version"
+
+    // Timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+
+    // Lottie
+    def lottie_version = '5.2.0'
+    /** https://developer.android.com/training/dependency-injection/hilt-android */
+    implementation "com.airbnb.android:lottie-compose:$lottie_version"
 
     // DataStore Preferences
     implementation "androidx.datastore:datastore-preferences:1.0.0"

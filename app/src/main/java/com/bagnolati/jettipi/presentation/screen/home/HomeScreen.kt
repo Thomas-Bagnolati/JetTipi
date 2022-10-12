@@ -22,7 +22,7 @@ import com.bagnolati.jettipi.presentation.screen.Screen
 import com.bagnolati.jettipi.presentation.theme.AppTheme
 
 @Composable
-fun SplashScreen(
+fun HomeScreen(
     navController: NavController
 ) {
 
@@ -57,7 +57,6 @@ fun SplashScreen(
         )
 
     }
-
 }
 
 @Preview(showBackground = true, name = "Light Mode")
@@ -65,7 +64,6 @@ fun SplashScreen(
 @Composable
 private fun SplashPreview() {
     AppTheme {
-        SplashScreen(navController = rememberNavController())
+        HomeScreen(navController = rememberNavController())
     }
-
 }

@@ -5,12 +5,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.bagnolati.jettipi.presentation.screen.country.CountryScreen
-import com.bagnolati.jettipi.presentation.screen.home.SplashScreen
+import com.bagnolati.jettipi.presentation.screen.home.HomeScreen
 
 
 @Composable
 fun ConfigNavigation() {
-
     val navController = rememberNavController()
 
     NavHost(
@@ -18,7 +17,7 @@ fun ConfigNavigation() {
         startDestination = Screen.Home.route,
     ) {
         composable(route = Screen.Home.route) {
-            SplashScreen(navController)
+            HomeScreen(navController)
         }
         composable(route = Screen.Country.route) {
             CountryScreen(navController)

@@ -1,4 +1,4 @@
-package com.bagnolati.jettipi
+package com.bagnolati.jettipi.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -23,7 +23,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier
                         .fillMaxSize()
                         .navigationBarsPadding(),
-                    color = AppTheme.colors.background
+                    color = AppTheme.colors.background,
+                    contentColor = AppTheme.colors.onBackground
                 ) {
                     ConfigUI(window, this)
                     ConfigNavigation()

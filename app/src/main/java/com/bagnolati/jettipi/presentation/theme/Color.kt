@@ -12,21 +12,20 @@ val Light = Color(0xFFF3F1F0)
 val Transparent = Color(0x00000000)
 
 val BlueRoyal = Color(0xFF3759D8)
-val GoldRoyal = Color(0xFFD5BB84)
-val Pink = Color(0xFFCC3F7B)
+val Green = Color(0xFF3AB795)
+val GreenVariant = Color(0xFF20FC8F)
 
-val CardDark = Color(0xFF3B3E43)
-val CardLight = Color(0xFFC3CEDF)
-
-val OnBackGroundLight = Black
-val OnBackGroundDark = White
-
-val TextDark = Dark
-val TextLight = Light
+val Error = Color(0xFFFF4760)
+val Success = Color(0xFF4ad991)
 
 val BackgroundLight = Light
 val BackgroundDark = Dark
-
+val OnBackGroundLight = Black
+val OnBackGroundDark = White
+val TextDark = Dark
+val TextLight = Light
+val CardDark = Color(0xFF1F2225)
+val CardLight = Color(0xFFE6E8EE)
 val DividerLight = Color(0xFFEBEBEB)
 val DividerDark = Color(0xFF6E6E6E)
 
@@ -47,13 +46,12 @@ val Gray950 = Color(0xFF141414)
 
 @Immutable
 data class AppColors(
-    val dark: Color = Dark,
-    val light: Color = Light,
     val primary: Color = BlueRoyal,
     val onPrimary: Color = Light,
-    val secondary: Color = GoldRoyal,
-    val onSecondary: Color = Dark,
-    val accent: Color = Pink,
+    val secondary: Color = Green,
+    val onSecondary: Color = Light,
+    val error: Color = Error,
+    val onError: Color = White,
     val background: Color,
     val onBackground: Color,
     val textTheme: Color,
@@ -61,8 +59,7 @@ data class AppColors(
     val navigationBackIcon: Color,
     val divider: Color,
     val inactive: Color = Gray500,
-    val cardLightBackground: Color = CardLight,
-    val cardDarkBackground: Color = CardDark
+    val cardBackground: Color
 )
 
 val LightColors = AppColors(
@@ -71,6 +68,7 @@ val LightColors = AppColors(
     textTheme = TextDark,
     navigationBackIcon = Gray900,
     divider = DividerDark,
+    cardBackground = CardLight,
     isLight = true,
 )
 
@@ -80,6 +78,7 @@ val DarkColors = AppColors(
     textTheme = TextLight,
     navigationBackIcon = Gray100,
     divider = DividerLight,
+    cardBackground = CardDark,
     isLight = false,
 )
 

@@ -15,6 +15,13 @@ data class AppTypography(
         fontWeight = FontWeight.SemiBold,
         fontSize = 36.sp,
     ),
+
+    val h3: TextStyle = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Bold,
+        fontSize = 22.sp,
+        lineHeight = 24.sp
+    ),
     val h4: TextStyle = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Medium,
@@ -29,6 +36,12 @@ data class AppTypography(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
+    ),
+    val body2: TextStyle = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 16.sp,
+        lineHeight = 18.sp,
     ),
     val button: TextStyle = TextStyle(
         fontFamily = FontFamily.Default,
@@ -45,17 +58,21 @@ data class AppTypography(
 private val instance = AppTypography()
 val LightTypography = AppTypography(
     h1 = instance.h1.copy(color = OnBackGroundLight),
+    h3 = instance.h3.copy(color = OnBackGroundLight),
     h4 = instance.h4.copy(color = OnBackGroundLight),
     subtitle = instance.subtitle.copy(color = OnBackGroundLight),
     body = instance.body.copy(color = OnBackGroundLight),
+    body2 = instance.body2.copy(color = OnBackGroundLight),
     caption = instance.caption.copy(color = OnBackGroundLight),
 )
 
 val DarkTypography = AppTypography(
     h1 = instance.h1.copy(color = OnBackGroundDark),
+    h3 = instance.h3.copy(color = OnBackGroundDark),
     h4 = instance.h4.copy(color = OnBackGroundDark),
     subtitle = instance.subtitle.copy(color = OnBackGroundDark),
     body = instance.body.copy(color = OnBackGroundDark),
+    body2 = instance.body2.copy(color = OnBackGroundDark),
     caption = instance.caption.copy(color = OnBackGroundDark),
 )
 
