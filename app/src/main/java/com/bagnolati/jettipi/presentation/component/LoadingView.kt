@@ -7,6 +7,7 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import com.bagnolati.jettipi.presentation.theme.AppTheme
 import com.bagnolati.jettipi.util.notClickable
 
@@ -25,4 +26,10 @@ fun LoadingView(clickable: Boolean = false) {
             color = AppTheme.colors.primary,
         )
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun Preview(){
+    LoadingView()
 }
