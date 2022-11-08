@@ -1,8 +1,5 @@
 package com.bagnolati.jettipi.presentation.screen.country
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bagnolati.jettipi.common.ErrorConstants.ERROR_MESSAGE_DEFAULT
@@ -13,6 +10,7 @@ import com.bagnolati.jettipi.presentation.screen.country.CountryEvent.OnClickRan
 import com.bagnolati.jettipi.presentation.screen.country.CountryEvent.OnDialogDismiss
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
@@ -23,8 +21,8 @@ class CountryViewModel @Inject constructor(
     private val getAllCountriesUseCase: GetAllCountriesUseCase
 ) : ViewModel() {
 
-    var state by mutableStateOf(CountryState())
-        private set
+    private var _state = MutableStateFlow(CountryState())
+    val state = _state.asStateFlow()
 
     private val countries = MutableStateFlow<List<Country>?>(emptyList())
 
@@ -35,26 +33,26 @@ class CountryViewModel @Inject constructor(
     fun onEvent(event: CountryEvent) {
         when (event) {
             OnClickRandomCountry -> refreshRandomCountry()
-            OnDialogDismiss -> state = state.copy(error = null)
+            OnDialogDismiss -> _state.value = state.value.copy(error = null)
             else -> fetchAllCountries()
         }
     }
 
     private fun fetchAllCountries() {
         getAllCountriesUseCase().onEach { result ->
-            state = when (result) {
+            _state.value = when (result) {
                 is Success -> {
                     countries.value = result.data
-                    state.copy(country = result.data?.random(), isLoading = false)
+                    state.value.copy(country = result.data?.random(), isLoading = false)
                 }
-                is Error -> state.copy(error = result.message ?: ERROR_MESSAGE_DEFAULT, isLoading = false)
-                is Loading -> state.copy(isLoading = true)
+                is Error -> state.value.copy(error = result.message ?: ERROR_MESSAGE_DEFAULT, isLoading = false)
+                is Loading -> state.value.copy(isLoading = true)
             }
         }.launchIn(viewModelScope)
     }
 
     private fun refreshRandomCountry() {
-        state = state.copy(country = countries.value?.random())
+        _state.value = state.value.copy(country = countries.value?.random())
     }
 
 }

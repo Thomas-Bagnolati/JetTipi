@@ -9,6 +9,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.TopCenter
 import androidx.compose.ui.Modifier
@@ -20,6 +22,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
@@ -32,12 +36,13 @@ import com.bagnolati.jettipi.presentation.screen.country.CountryEvent.*
 import com.bagnolati.jettipi.presentation.theme.AppTheme
 import com.bagnolati.jettipi.util.toNumberFormat
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun CountryScreen(
     navController: NavController,
     viewModel: CountryViewModel = hiltViewModel()
 ) {
-    val state = viewModel.state
+    val state by viewModel.state.collectAsStateWithLifecycle()
     CountryView(
         state,
         onClickErrorDialog = { viewModel.onEvent(OnClickErrorDialog) },
@@ -123,7 +128,10 @@ private fun CountryImageCard(
                 maxLines = 1,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = AppTheme.spacing.horizontalDefault, vertical = AppTheme.spacing.S),
+                    .padding(
+                        horizontal = AppTheme.spacing.horizontalDefault,
+                        vertical = AppTheme.spacing.S
+                    ),
                 color = AppTheme.colors.textTheme
             )
         }

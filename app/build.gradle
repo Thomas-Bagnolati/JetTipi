@@ -81,7 +81,7 @@ dependencies {
     // Core
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
-    implementation 'androidx.activity:activity-compose:1.6.0'
+    implementation 'androidx.activity:activity-compose:1.6.1'
     implementation "androidx.compose.ui:ui"
     implementation "androidx.compose.ui:ui-tooling-preview"
     implementation "androidx.compose.ui:ui-text-google-fonts"
@@ -96,7 +96,7 @@ dependencies {
 
     // Accompanist ->
     /** https://google.github.io/accompanist */
-    def accompanist_version = '0.25.1'
+    def accompanist_version = '0.27.0'
     // .System-Ui-Controller
     implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
     // .Inset-UI
@@ -116,7 +116,8 @@ dependencies {
 
     // Lifecycle compose
     /** https://developer.android.com/jetpack/androidx/releases/lifecycle */
-    def lifecycle_version = '2.5.1'
+    def lifecycle_version = '2.6.0-alpha03'
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
 
     // Hilt-Dagger
